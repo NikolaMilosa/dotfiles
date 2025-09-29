@@ -1,0 +1,11 @@
+[core]
+	excludesFile = ~/.gitignore
+	pager = bat --plain
+[init]
+	defaultBranch = main
+
+[includeIf "gitdir:~/work/Personal/"]
+    path = ~/work/Personal/.gitconfig.personal
+
+[includeIf "gitdir:~/work/Sotex/"]
+    path = ~/work/Sotex/.gitconfig.sotex
