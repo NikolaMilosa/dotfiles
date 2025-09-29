@@ -1,0 +1,12 @@
+[core]
+    sshCommand = "ssh -i ~/.ssh/id_sotex"
+[user]
+    email = nikola.milosavljevic@sotexsolutions.com
+    name = nikolamilosasotex
+    signingkey = /home/nikola/.ssh/id_sotex_signing.pub
+[commit]
+    gpgsign = true
+[gpg]
+    format = ssh
+[gpg "ssh"]
+    allowedSignersFile = /home/nikola/work/Personal/allowed-signers
