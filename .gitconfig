@@ -7,5 +7,8 @@
 [includeIf "gitdir:~/work/Personal/"]
     path = ~/work/Personal/.gitconfig.personal
 
+[includeIf "gitdir:~/work/Dfinity/"]
+    path = ~/work/Dfinity/.gitconfig.dfinity
+
 [includeIf "gitdir:~/work/Sotex/"]
     path = ~/work/Sotex/.gitconfig.sotex
