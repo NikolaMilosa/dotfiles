@@ -3,7 +3,7 @@
 [user]
     email = nikola.milosavljevic@dfinity.org
     name = nikolamilosa
-    signingkey = /home/nikola/.ssh/id_sotex_signing.pub
+    signingkey = /home/nikola/.ssh/id_home_signing.pub
 [commit]
     gpgsign = true
 [gpg]

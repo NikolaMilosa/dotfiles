@@ -43,7 +43,6 @@
 alias d="docker"
 alias dc="docker compose"
 alias k="kubectl"
-alias podman="docker"
 
 export EDITOR_CMD="nvim"
 export EDITOR="$EDITOR_CMD" 
@@ -69,6 +68,7 @@ ssh-add ~/.ssh/id_home_signing 2>/dev/null
 ssh-add ~/.ssh/id_home 2>/dev/null
 ssh-add ~/.ssh/id_sotex 2>/dev/null
 ssh-add ~/.ssh/id_sotex_signing 2>/dev/null
+ssh-add ~/.ssh/id_temp_work 2>/dev/null
 
 export POCKET_IC_BIN=$(which pocket-ic)
 export DRI_PRIME=1
