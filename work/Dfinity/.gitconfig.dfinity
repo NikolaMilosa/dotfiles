@@ -1,5 +1,5 @@
 [core]
-    sshCommand = "ssh -i ~/.ssh/id_sotex"
+    sshCommand = "ssh -i ~/.ssh/id_home"
 [user]
     email = nikola.milosavljevic@dfinity.org
     name = nikolamilosa
