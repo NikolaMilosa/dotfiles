@@ -1,0 +1,1 @@
+/home/nikola/.config/vim/colors/wallbash.vim
