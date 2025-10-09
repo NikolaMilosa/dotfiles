@@ -174,11 +174,6 @@ style = "bold bright-cyan"
 format = " [$symbol(-$name)]($style)"
 symbol = "ℂ "
 
-[cpp]
-style = "bold bright-cyan"
-format = " [cpp](italic) [$symbol]($style)"
-symbol = " "
-
 [kotlin]
 format = " [kotlin](italic) [$symbol]($style)"
 style = "bold bright-red"
@@ -198,11 +193,6 @@ symbol = " "
 format = " [php](italic) [$symbol]($style)"
 style = "bold bright-red"
 symbol = " "
-
-[pixi]
-format = " [pixi](italic) [$symbol]($style)"
-style = "bold bright-yellow"
-symbol = "pixi "
 
 [rlang]
 format = " [rlang](italic) [$symbol]($style)"
