@@ -1,6 +1,6 @@
 [core]
 	excludesFile = ~/.gitignore
-	pager = bat --plain
+    pager = bat --plain --paging=never
 [init]
 	defaultBranch = main
 
@@ -12,3 +12,8 @@
 
 [includeIf "gitdir:~/work/Sotex/"]
     path = ~/work/Sotex/.gitconfig.sotex
+[pager]
+	diff = bat --plain --paging=never
+	show = bat --plain --paging=never
+[alias]
+	diffall = !git diff HEAD | bat --plain --paging=never
