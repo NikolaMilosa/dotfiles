@@ -113,7 +113,7 @@ local yank_buffer = function()
         ::continue::
     end
 
-    vim.fn.setreg("*", table.concat(lines_to_yank, "\n"))
+    vim.fn.setreg("+", table.concat(lines_to_yank, "\n"))
 end
 
 local run_test_for_current_problem = function()
