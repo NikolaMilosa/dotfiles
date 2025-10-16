@@ -16,7 +16,7 @@
     @import "/home/nikola/.local/share/waybar/styles/hyprdots.css";
 
     /* Imports wallbash colors */
-    /*  wallbash gtk.css not found   */
+    @import "/home/nikola/.cache/hyde/wallbash/gtk.css";
 
     /* Colors and theme configuration is generated through the `theme.css` file */
     @import "theme.css";
