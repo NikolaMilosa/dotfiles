@@ -12,16 +12,51 @@ done
 echo "🔍 Scanning for available networks..."
 nmcli device wifi rescan &>/dev/null
 
-# List networks and select one with fzf
-network=$(nmcli --terse --fields SSID,SIGNAL,SECURITY device wifi list | \
-  awk -F: '!seen[$1]++ {printf "%-30s | %3s%% | %s\n", $1, $2, $3}' | \
-  fzf --prompt="Select Wi-Fi network: " --height=20 --border)
+# --- Collect known (saved) SSIDs ---
+mapfile -t saved_ssids < <(nmcli -t -f NAME,TYPE connection show | grep 'wireless' | cut -d: -f1)
+
+# --- Collect available networks ---
+mapfile -t wifi_list < <(nmcli -t -f SSID,SIGNAL,SECURITY device wifi list | sed '/^:/d')
+
+# --- Merge and label known/unknown ---
+combined=""
+for line in "${wifi_list[@]}"; do
+  IFS=":" read -r ssid signal security <<<"$line"
+  [[ -z "$ssid" ]] && continue
+  if printf '%s\n' "${saved_ssids[@]}" | grep -Fxq "$ssid"; then
+    status="[KNOWN]"
+  else
+    status="[NEW]"
+  fi
+  combined+=$(printf "%-8s | %-30s | %3s%% | %s\n" "$status" "$ssid" "$signal" "$security")
+  combined+=$'\n'
+done
+
+# --- Handle no networks case ---
+if [[ -z "$combined" ]]; then
+  echo "No Wi-Fi networks found."
+  exit 1
+fi
+
+# --- fzf selection ---
+network=$(echo "$combined" | fzf --prompt="Select Wi-Fi network: " --height=20 --border)
 
 [[ -z "$network" ]] && echo "Cancelled." && exit 0
-ssid=$(echo "$network" | awk -F'|' '{print $1}' | xargs)
+ssid=$(echo "$network" | cut -d'|' -f2 | xargs)
 
 echo "Selected network: '$ssid'"
 echo
+
+# --- Check if already saved ---
+if nmcli -t -f NAME,TYPE connection show | grep -q "^${ssid}"; then
+  echo "🔗 '$ssid' is already configured. Connecting..."
+  if ! nmcli connection up "$ssid"; then
+    echo "⚠️  Failed to bring up saved connection. You may need to reconfigure it."
+  else
+    echo "✅ Connected successfully to $ssid!"
+  fi
+  exit 0
+fi
 
 # Ask for connection type
 echo "Connection type:"
