@@ -45,13 +45,12 @@ network=$(echo "$combined" | fzf --prompt="Select Wi-Fi network: " --height=20 -
 ssid=$(echo "$network" | cut -d'|' -f2 | xargs)
 
 echo "Selected network: '$ssid'"
-echo
 
 # --- Check if already saved ---
 if nmcli -t -f NAME,TYPE connection show | grep -q "^${ssid}"; then
   echo "🔗 '$ssid' is already configured. Connecting..."
   if ! nmcli connection up "$ssid"; then
-    echo "⚠️  Failed to bring up saved connection. You may need to reconfigure it."
+    echo "⚠️ Failed to bring up saved connection. You may need to reconfigure it."
   else
     echo "✅ Connected successfully to $ssid!"
   fi
