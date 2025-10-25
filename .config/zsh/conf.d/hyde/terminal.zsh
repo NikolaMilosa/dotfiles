@@ -237,7 +237,6 @@ alias c='clear' \
     pl='__package_manager search installed' \
     pa='__package_manager search all' \
     vc='code' \
-    fastfetch='fastfetch --logo none' \
     ..='cd ..' \
     ...='cd ../..' \
     .3='cd ../../..' \
