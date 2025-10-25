@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import getpass
 import logging
 import subprocess
 import sys
@@ -106,6 +107,19 @@ def fzf(prompt: str, items: list[str]) -> str:
     return result.stdout.strip()
 
 
+def get_wifi_device() -> str:
+    out = run_out(["nmcli", "-t", "-f", "DEVICE,TYPE", "device"]).strip().splitlines()
+
+    for line in out:
+        parts = line.split(":")
+
+        name, device_type = parts[0], parts[1]
+        if device_type == "wifi":
+            return name
+
+    raise ValueError("Didn't find device id for wifi")
+
+
 def main():
     logging.info("Running wifi selector...")
 
@@ -131,8 +145,100 @@ def main():
         ],
     )
     parts = picked.split("|")
-    ssid, band, signal = parts[1].strip(), parts[2].strip(), parts[3].strip()
+    known, ssid, band, signal = (
+        parts[0].strip(),
+        parts[1].strip(),
+        parts[2].strip(),
+        parts[3].strip(),
+    )
     logging.info("Picked network: %s (%s) - signal strength %s" % (ssid, band, signal))
+
+    if known == "Known":
+        logging.info("Connecting to a known network...")
+        run_out(["nmcli", "connection", "up", ssid])
+        return
+
+    logging.info("Connecting to an unknown network...")
+    logging.info("Picking the connection type:")
+    logging.info("\t1. Username + password ")
+    logging.info("\t2. Email + password (corporate/EAP)")
+    logging.info("\t3. Just password (standard)")
+
+    conn_type = input("Choose [1-3]: ")
+    choice = int(conn_type)
+
+    if choice == 1:
+        username = input("Username: ")
+    if choice == 2:
+        email = input("Email: ")
+
+    password = getpass.getpass(prompt="Password: ")
+
+    device = get_wifi_device()
+    logging.info("Connecting to device: %s" % device)
+
+    if choice == 3:
+        # connect to device
+        result = subprocess.run(
+            [
+                "sudo",
+                "nmcli",
+                "device",
+                "wifi",
+                "connect",
+                ssid,
+                "password",
+                password,
+                "ifname",
+                device,
+                "--ask",
+            ],
+            check=True,
+        )
+        result.check_returncode()
+        print("Hello")
+    else:
+        if username is not None:
+            identity = username
+        elif email is not None:
+            identity = email
+        else:
+            raise ValueError("Neither username nur email have been set")
+
+        # connect to the device
+        result = subprocess.run(
+            [
+                "sudo",
+                "nmcli",
+                "connection",
+                "add",
+                "type",
+                "wifi",
+                "ifname",
+                device,
+                "con-name",
+                ssid,
+                "ssid",
+                ssid,
+                "wifi-sec.key-mgmt",
+                "wpa-eap",
+                "802-1x.identity",
+                identity,
+                "802-1x.password",
+                password,
+            ],
+            check=True,
+        )
+        result.check_returncode()
+
+    # modify permissions
+    result = subprocess.run(
+        ["sudo", "nmcli", "connection", "modify", ssid, "connection.permissions", ""],
+        check=True,
+    )
+    result.check_returncode()
+
+    logging.info("Successfully connected to the network: %s", ssid)
 
 
 main()
