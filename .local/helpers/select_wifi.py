@@ -187,6 +187,8 @@ def main():
                 identity,
                 "802-1x.password",
                 password,
+                "save",
+                "yes",
             ],
             check=True,
         )
