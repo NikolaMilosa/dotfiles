@@ -5,44 +5,13 @@ import logging
 import subprocess
 import sys
 
+from utils.shared import ensure_cmd_exists, fzf, run_out
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
 )
 REQUIRED_CMDS = ["nmcli", "fzf"]
-
-
-def ensure_cmd_exists(cmd: str):
-    result = subprocess.run(
-        ["which", cmd],
-        check=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-    )
-
-    output = result.stdout.decode()
-    if "not found" in output or result.returncode != 0:
-        raise ValueError("Command %s doesn't exist: %s" % (cmd, result.stderr))
-
-
-def run(cmd) -> tuple[str, str]:
-    logging.info("Running %s" % cmd)
-    result = subprocess.run(
-        cmd,
-        check=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-    )
-
-    result.check_returncode()
-    stdout, stderr = result.stdout.decode(), result.stderr.decode()
-
-    return (stdout, stderr)
-
-
-def run_out(cmd) -> str:
-    (out, _) = run(cmd)
-    return out
 
 
 def get_available() -> list[list[str]]:
@@ -96,17 +65,6 @@ def combine(known, available) -> list[str]:
     return combined
 
 
-def fzf(prompt: str, items: list[str]) -> str:
-    result = subprocess.run(
-        ["fzf", f"--prompt={prompt}", "--height=20", "--border"],
-        input="\n".join(items),
-        text=True,
-        capture_output=True,
-    )
-
-    return result.stdout.strip()
-
-
 def get_wifi_device() -> str:
     out = run_out(["nmcli", "-t", "-f", "DEVICE,TYPE", "device"]).strip().splitlines()
 
@@ -137,12 +95,15 @@ def main():
         sys.exit(1)
 
     longest_name = max([len(line[1]) for line in combined])
+
+    def fmt(item) -> str:
+        return f"{item[0]:<8} | {item[1]:<{longest_name}} | {item[2]:<9} | {item[3]:>6}% | {item[4]}"
+
     picked = fzf(
         "Select wifi network: ",
-        [
-            f"{line[0]:<8} | {line[1]:<{longest_name}} | {line[2]:<4} | {line[3]:>3}% | {line[4]}"
-            for line in combined
-        ],
+        combined,
+        ["Status", "SSID", "Bandwidth", "Signal", "Security"],
+        fmt,
     )
     parts = picked.split("|")
     known, ssid, band, signal = (
