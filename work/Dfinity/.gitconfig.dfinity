@@ -3,10 +3,6 @@
 [user]
     email = nikola.milosavljevic@dfinity.org
     name = nikolamilosa
-    signingkey = /home/nikola/.ssh/id_home_signing.pub
+    signingkey = C563F5A67AC0F3CC
 [commit]
     gpgsign = true
-[gpg]
-    format = ssh
-[gpg "ssh"]
-    allowedSignersFile = /home/nikola/work/Personal/allowed-signers

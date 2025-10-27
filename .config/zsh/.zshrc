@@ -64,11 +64,11 @@ source "$HOME/.local/share/dfx/env"
 
 gpg-agent --disable-scdaemon 2>/dev/null
 export SSH_AUTH_SOCK=/run/user/1000/gnupg/S.gpg-agent.ssh
-ssh-add ~/.ssh/id_home_signing 2>/dev/null
-ssh-add ~/.ssh/id_home 2>/dev/null
-ssh-add ~/.ssh/id_sotex 2>/dev/null
-ssh-add ~/.ssh/id_sotex_signing 2>/dev/null
-ssh-add ~/.ssh/id_temp_work 2>/dev/null
+
+for key in ~/.ssh/id_*; do
+    [[ -f "$key" && "$key" != *.pub ]] && ssh-add "$key" 2>/dev/null
+done
+
 
 export POCKET_IC_BIN=$(which pocket-ic)
 export DRI_PRIME=1
