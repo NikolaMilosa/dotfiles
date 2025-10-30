@@ -128,10 +128,14 @@ def main():
     conn_type = input("Choose [1-3]: ")
     choice = int(conn_type)
 
+    identity = None
     if choice == 1:
-        username = input("Username: ")
+        identity = input("Username: ")
     if choice == 2:
-        email = input("Email: ")
+        identity = input("Email: ")
+
+    if identity is None:
+        raise ValueError("Identity not set")
 
     password = getpass.getpass(prompt="Password: ")
 
@@ -159,13 +163,6 @@ def main():
         result.check_returncode()
         print("Hello")
     else:
-        if username is not None:
-            identity = username
-        elif email is not None:
-            identity = email
-        else:
-            raise ValueError("Neither username nur email have been set")
-
         # connect to the device
         result = subprocess.run(
             [
@@ -183,6 +180,10 @@ def main():
                 ssid,
                 "wifi-sec.key-mgmt",
                 "wpa-eap",
+                "802-1x.eap",
+                "ttls",
+                "802-1x.phase2-auth",
+                "pap",
                 "802-1x.identity",
                 identity,
                 "802-1x.password",
