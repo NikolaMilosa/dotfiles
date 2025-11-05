@@ -27,6 +27,13 @@ better_cat() {
                     eval "$cat_cmd \"$file\""
                     return
                 fi
+            elif [[ "$file" == *.md ]]; then
+                if command -v mdcat >/dev/null 2>&1; then
+                    mdcat "$file"
+                else
+                    echo "Markdown detected, but mdcat not found - falling back to $cat_cmd"
+                    eval "$cat_cmd \"$file\""
+                fi
             else
                 eval "$cat_cmd \"$file\""
             fi
