@@ -133,6 +133,8 @@ def main():
         identity = input("Username: ")
     if choice == 2:
         identity = input("Email: ")
+    if choice == 3:
+        identity = "Not important"
 
     if identity is None:
         raise ValueError("Identity not set")
