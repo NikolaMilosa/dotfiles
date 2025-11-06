@@ -163,7 +163,6 @@ def main():
             check=True,
         )
         result.check_returncode()
-        print("Hello")
     else:
         # connect to the device
         result = subprocess.run(
@@ -200,6 +199,12 @@ def main():
     # modify permissions
     result = subprocess.run(
         ["sudo", "nmcli", "connection", "modify", ssid, "connection.permissions", ""],
+        check=True,
+    )
+    result.check_returncode()
+
+    result = subprocess.run(
+        ["sudo", "nmcli", "connection", "modify", ssid, "+ipv4.dns", "1.1.1.1,8.8.8.8"],
         check=True,
     )
     result.check_returncode()
