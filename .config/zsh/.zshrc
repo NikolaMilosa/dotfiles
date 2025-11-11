@@ -60,7 +60,7 @@ export PATH="$PATH:$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/
 
 source "$HOME/.local/share/dfx/env"
 
-# source $HOME/.rye/env
+source $HOME/.rye/env
 
 gpg-agent --disable-scdaemon 2>/dev/null
 export SSH_AUTH_SOCK=/run/user/1000/gnupg/S.gpg-agent.ssh

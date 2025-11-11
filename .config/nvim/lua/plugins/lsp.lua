@@ -21,6 +21,43 @@ local sourceVenvIfExists = function()
     vim.env.PATH = venv_path .. "/bin:" .. vim.env.PATH
 end
 
+-- Check if there is a Rye project and source its virtual env if it exists
+local sourceRyeVenvIfExists = function()
+    -- Look for pyproject.toml (Rye projects always have one)
+    local pyproject = vim.fn.glob(vim.fn.getcwd() .. "/pyproject.toml")
+    if pyproject == "" then
+        return
+    end
+
+    -- Optionally verify that it's a Rye-managed project
+    local contains_rye = vim.fn.system("grep -q '\\[tool.rye\\]' " .. pyproject .. " && echo 1 || echo 0")
+    if vim.fn.trim(contains_rye) ~= "1" then
+        return
+    end
+
+    vim.notify("Found Rye project in root", vim.log.levels.INFO)
+
+    -- Parse venv path from `rye show`
+    local output = vim.fn.system("rye show")
+    if vim.v.shell_error ~= 0 or output == "" then
+        vim.notify("Failed to run 'rye show'", vim.log.levels.ERROR)
+        return
+    end
+
+    local venv_path = string.match(output, "venv:%s*(%S+)")
+    if not venv_path or venv_path == "" then
+        vim.notify("Could not extract venv path from 'rye show'", vim.log.levels.ERROR)
+        return
+    end
+
+    vim.notify("Using Rye venv: " .. venv_path, vim.log.levels.INFO)
+
+    -- Set Python for LSP / plugins
+    vim.g.python3_host_prog = venv_path .. "/bin/python"
+    vim.env.VIRTUAL_ENV = venv_path
+    vim.env.PATH = venv_path .. "/bin:" .. vim.env.PATH
+end
+
 return {
     {
         'saghen/blink.cmp',
@@ -122,8 +159,12 @@ return {
 
             -- Try source on init
             sourceVenvIfExists()
+            sourceRyeVenvIfExists()
             vim.api.nvim_create_autocmd({ "DirChanged" }, {
-                callback = sourceVenvIfExists
+                callback = function()
+                    sourceVenvIfExists()
+                    sourceRyeVenvIfExists()
+                end
             })
         end,
     }
