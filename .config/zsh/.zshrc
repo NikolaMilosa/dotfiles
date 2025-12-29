@@ -78,4 +78,5 @@ export PATH=$PATH:~/.config/helix/helpers
 export XDG_CONFIG_DIRS=$XDG_CONFIG_DIRS:~/.config
 export PATH=$PATH:~/.dotnet/tools
 export PATH=$PATH:~/.local/helpers
+export PATH=$PATH:~/go/bin
 
