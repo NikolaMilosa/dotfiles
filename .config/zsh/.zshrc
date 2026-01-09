@@ -80,3 +80,7 @@ export PATH=$PATH:~/.dotnet/tools
 export PATH=$PATH:~/.local/helpers
 export PATH=$PATH:~/go/bin
 
+# ZSHELL Bindings
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^e' edit-command-line
