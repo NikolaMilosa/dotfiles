@@ -84,3 +84,5 @@ export PATH=$PATH:~/go/bin
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^e' edit-command-line
+export PATH=/home/nikola/.opencode/bin:$PATH
+
