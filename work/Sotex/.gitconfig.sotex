@@ -1,11 +1,10 @@
 [core]
-    sshCommand = "ssh -i ~/.ssh/id_sotex"
+    sshCommand = "ssh -i ~/.ssh/sotex_ed25519"
 [user]
     email = nikola.milosavljevic@sotexsolutions.com
     name = nikolamilosasotex
-    signingkey = /home/nikola/.ssh/id_sotex_signing.pub
 [commit]
-    gpgsign = true
+    gpgsign = false
 [gpg]
     format = ssh
 [gpg "ssh"]
