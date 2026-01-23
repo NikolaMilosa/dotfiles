@@ -28,6 +28,9 @@ return {
 						["<C-u>"] = false,
 					},
 				},
+				preview = {
+					treesitter = false,
+				},
 			},
 			pickers = {
 				find_files = {
