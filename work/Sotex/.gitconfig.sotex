@@ -1,5 +1,5 @@
 [core]
-    sshCommand = "ssh -i ~/.ssh/sotex_ed25519"
+    sshCommand = "ssh -i ~/.ssh/id_sotex"
 [user]
     email = nikola.milosavljevic@sotexsolutions.com
     name = nikolamilosasotex

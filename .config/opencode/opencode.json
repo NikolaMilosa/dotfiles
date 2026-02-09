@@ -1,44 +1,4 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "theme": "everforest",
-  "model": "anthropic/claude-opus-4.5",
-  "autoupdate": true,
-  "agent": {
-    "build": {
-      "mode": "primary",
-      "tools": {
-        "write": true,
-        "edit": true,
-        "bash": true
-      }
-    },
-    "plan": {
-      "mode": "primary",
-      "tools": {
-        "write": false,
-        "edit": false,
-        "bash": false
-      }
-    },
-    "code-reviewer": {
-      "description": "Reviews code for best practices and potential issues",
-      "mode": "subagent",
-      "prompt": "You are a senior code reviewer. Focus on security, performance, and maintainability of the changes that are made on the current branch and some around them. Also look at the way that they integrate with other parts of the system.",
-      "tools": {
-        "write": false,
-        "edit": false
-      }
-    }
-  },
-  "keybinds": {
-  },
-  "lsp": {
-      "custom-rust": {
-          "command": ["/usr/local/bin/ra-multiplex", "client", "--server-path", "rust-analyzer"],
-          "extensions": [".rs"]
-      },
-      "rust": {
-          "disabled": true
-      }
-  }
+  "theme": "system"
 }
