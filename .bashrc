@@ -41,12 +41,11 @@ export DFX_HSM_PIN=$(cat ~/.hsm-pin)
 export HSM_PIN=$(cat ~/.hsm-pin)
 
 export PATH="$HOME/.local/bin:$PATH"
-source ~/.cargo/env
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 source "$HOME/.local/share/dfx/env"
 
-source $HOME/.rye/env
+source $HOME/.local/bin/env
 
 # Setting up gpg and keys
 gpg-agent --disable-scdaemon 2>/dev/null
@@ -56,3 +55,6 @@ for key in ~/.ssh/id_*; do
     [[ -f "$key" && "$key" != *.pub ]] && ssh-add "$key" 2>/dev/null
 done
 
+
+. "$HOME/.local/share/../bin/env"
+. "$XDG_DATA_HOME/dfx/env"
