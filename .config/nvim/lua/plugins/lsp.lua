@@ -84,54 +84,45 @@ return {
 		opts_extend = { "sources.default" },
 	},
 	{
+		"folke/lazydev.nvim",
+		ft = "lua", -- only load on lua files
+		opts = {
+			library = {
+				-- See the configuration section for more details
+				-- Load luvit types when the `vim.uv` word is found
+				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+			},
+		},
+	},
+	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			{
-				"folke/lazydev.nvim",
-				ft = "lua", -- only load on lua files
-				opts = {
-					library = {
-						-- See the configuration section for more details
-						-- Load luvit types when the `vim.uv` word is found
-						{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
-					},
-				},
-			},
 			"saghen/blink.cmp",
 		},
 		config = function()
 			local lspconfig = require("lspconfig")
-			local configs = require("lspconfig.configs")
-
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-			-- lua setup --
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
-			})
+			local servers = { "lua_ls", "gopls", "csharp_ls", "pyright", "terraform_lsp" }
 
 			-- rust setup --
-			if not configs.rust_multiplex then
-				configs.rust_multiplex = {
-					default_config = {
-						cmd = { "/usr/local/bin/ra-multiplex", "client", "--server-path", "rust-analyzer" },
-						filetype = { "rust" },
-						root_dir = lspconfig.util.root_pattern("Cargo.toml"),
-						settings = {},
-					},
-				}
-			end
-			lspconfig.rust_multiplex.setup({
+			vim.lsp.config("rust_multiplex", {
+				default_config = {
+					cmd = { "/usr/local/bin/ra-multiplex", "client", "--server-path", "rust-analyzer" },
+					filetype = { "rust" },
+					root_dir = lspconfig.util.root_pattern("Cargo.toml"),
+					settings = {},
+				},
 				capabilities = capabilities,
 			})
+			vim.lsp.enable("rust_multiplex")
 
-			lspconfig.gopls.setup({ capabilities = capabilities })
-
-			lspconfig.csharp_ls.setup({ capabilities = capabilities })
-
-			lspconfig.pyright.setup({ capabilities = capabilities })
-
-			lspconfig.terraform_lsp.setup({ capabilities = capabilities })
+			for _, server in ipairs(servers) do
+				vim.lsp.config(server, {
+					capabilities = capabilities,
+				})
+				vim.lsp.enable(server)
+			end
 
 			vim.diagnostic.config({
 				virtual_text = {
