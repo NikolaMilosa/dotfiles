@@ -1,8 +1,9 @@
 return {
 	"akinsho/bufferline.nvim",
 	version = "v4.9",
-	dependencies = "nvim-tree/nvim-web-devicons",
+	dependencies = { "nvim-tree/nvim-web-devicons", "neanias/everforest-nvim"},
 	config = function()
+        require("everforest").load()
 		require("bufferline").setup({
 			options = {
 				buffer_close_icon = "",
