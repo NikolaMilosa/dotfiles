@@ -55,6 +55,9 @@ for key in ~/.ssh/id_*; do
     [[ -f "$key" && "$key" != *.pub ]] && ssh-add "$key" 2>/dev/null
 done
 
+if [[ -f "$HOME/.cargo/bin" ]]; then
+    . ~/.cargo/bin/
+fi
 
 . "$HOME/.local/share/../bin/env"
 . "$XDG_DATA_HOME/dfx/env"
