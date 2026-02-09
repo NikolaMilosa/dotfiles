@@ -103,25 +103,45 @@ return {
 			local lspconfig = require("lspconfig")
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-			local servers = { "lua_ls", "gopls", "csharp_ls", "pyright", "terraform_lsp" }
-
-			-- rust setup --
-			vim.lsp.config("rust_multiplex", {
-				default_config = {
-					cmd = { "/usr/local/bin/ra-multiplex", "client", "--server-path", "rust-analyzer" },
-					filetype = { "rust" },
-					root_dir = lspconfig.util.root_pattern("Cargo.toml"),
-					settings = {},
+			local servers = {
+				{
+					"lua_ls",
+					{
+						settings = {
+							Lua = {
+								diagnostics = {
+									-- Get the language server to recognize the `vim` global
+									globals = { "vim" },
+								},
+								workspace = {
+									-- Make the server aware of Neovim runtime files
+									library = vim.api.nvim_get_runtime_file("", true),
+								},
+							},
+						},
+					},
 				},
-				capabilities = capabilities,
-			})
-			vim.lsp.enable("rust_multiplex")
+				{
+					"rust_multiplex",
+					{
+						cmd = { "/usr/local/bin/ra-multiplex", "client", "--server-path", "rust-analyzer" },
+						filetype = { "rust" },
+						root_markers = { "Cargo.toml" },
+					},
+				},
+				{ "gopls" },
+				{ "csharp_ls" },
+				{ "pyright" },
+				{ "terraform_lsp " },
+			}
 
-			for _, server in ipairs(servers) do
-				vim.lsp.config(server, {
-					capabilities = capabilities,
-				})
-				vim.lsp.enable(server)
+			for _, lsp in pairs(servers) do
+				local name, config = lsp[1], lsp[2]
+				if config then
+					vim.lsp.config(name, config)
+				end
+				vim.lsp.config[name].capabilities = capabilities
+				vim.lsp.enable(name)
 			end
 
 			vim.diagnostic.config({
