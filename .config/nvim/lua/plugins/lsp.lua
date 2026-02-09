@@ -100,7 +100,6 @@ return {
 			"saghen/blink.cmp",
 		},
 		config = function()
-			local lspconfig = require("lspconfig")
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 			local servers = {
@@ -122,11 +121,18 @@ return {
 					},
 				},
 				{
-					"rust_multiplex",
+					"rust_analyzer",
 					{
-						cmd = { "/usr/local/bin/ra-multiplex", "client", "--server-path", "rust-analyzer" },
-						filetype = { "rust" },
-						root_markers = { "Cargo.toml" },
+						cmd = vim.lsp.rpc.connect("127.0.0.1", 27631),
+						settings = {
+							["rust-analyzer"] = {
+								lspMux = {
+									version = "1",
+									method = "connect",
+									server = "rust-analyzer",
+								},
+							},
+						},
 					},
 				},
 				{ "gopls" },
@@ -136,10 +142,8 @@ return {
 			}
 
 			for _, lsp in pairs(servers) do
-				local name, config = lsp[1], lsp[2]
-				if config then
-					vim.lsp.config(name, config)
-				end
+				local name, config = lsp[1], lsp[2] or {}
+				vim.lsp.config(name, config)
 				vim.lsp.config[name].capabilities = capabilities
 				vim.lsp.enable(name)
 			end
