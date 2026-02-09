@@ -61,6 +61,10 @@ if [[ -f "$HOME/.cargo/env" ]]; then
     . "$HOME/.cargo/env"
 fi
 
+if [[ -f "$HOME/.local/bin/env" ]]; then
+    . "$HOME/.local/bin/env"
+fi
+
 . "$HOME/.local/share/../bin/env"
 . "$XDG_DATA_HOME/dfx/env"
 . "$HOME/.cargo/env"
