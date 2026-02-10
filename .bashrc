@@ -69,7 +69,7 @@ fi
 . "$XDG_DATA_HOME/dfx/env"
 . "$HOME/.cargo/env"
 
-for file in /path/to/directory/*.sh; do
+for file in /home/nikola/bash-utils/*.sh; do
     [ -f "$file" ] && source "$file"
 done
 
