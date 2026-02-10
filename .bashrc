@@ -68,3 +68,5 @@ fi
 . "$HOME/.local/share/../bin/env"
 . "$XDG_DATA_HOME/dfx/env"
 . "$HOME/.cargo/env"
+
+. ./bash-utils/*.sh
