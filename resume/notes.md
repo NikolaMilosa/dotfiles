@@ -1,3 +1,8 @@
+## Where I've worked
+* Dfinity STIFTUNG: 2022 (sept) - now
+* Sotex Solutions: 2021 (may) - 2022 (sept) - I was outsorced to Schneider Electric in Seville.
+
+## What I've worked on
 DFINITY: [SRE]
 * Developed a service discovery component for enumerating machines in different environments which can be used for other purposes, like quering, monitoring and so on. This saved a lot of time for others and gave us quite an easy time when developing new things as we can just build something on top of it. Stack: Rust, Docker, Python, Bazel, Kubernetes.
 * Developed core log fetching logic for different environments and different scales. Used scalable tech and deployed it as an aggregated service which the whole company relies on to know what's happening on the network. Stack: Rust, Python, Docker, Bazel, Kubernetes, Kibana, Elasticsearch, Vector.dev
@@ -29,3 +34,12 @@ Sotex-box [SWE]:
 * Founding engineer for a product that will deliver ads to poor bandwidth networks in Serbia. Stack: .NET, Postgres, AWS, Pulumi, Flutter.
 * Played all of the roles in the software development journey, from a Solution Architect, across development and devops to sales and marketing.
 * Developed a solution that can scale to 10k devices (TVs and/or computers) playing ads simultaniously under severe budget restrictions. The whole solution costs 40$ a month and generates ~5000$ a month.
+
+## Interests
+I am very interested in distributed software, security, internal development experience and testing. 
+
+## Trivia
+* I like leetcode
+* I like gym and sports
+* I am a good public speaker and enjoy working in teams. Generally love working from the office.
+* Eager to learn a lot.
