@@ -35,6 +35,14 @@ Sotex-box [SWE]:
 * Played all of the roles in the software development journey, from a Solution Architect, across development and devops to sales and marketing.
 * Developed a solution that can scale to 10k devices (TVs and/or computers) playing ads simultaniously under severe budget restrictions. The whole solution costs 40$ a month and generates ~5000$ a month.
 
+## Education
+I graduated on Faculty of Technical Sciences in Serbia where I finished my Bachelors and Masters in December 2023. I've had GPA 9.75 on my Masters.
+
+## Work authorization
+Authorized to work in Switzerland, B permit and eligable to work in Serbia as I was born there.
+
+## Certifications aren't important!
+
 ## Interests
 I am very interested in distributed software, security, internal development experience and testing. 
 
