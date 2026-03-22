@@ -22,6 +22,9 @@ DFINITY: [SWE]
 * Implemented very important feature for the node providers that allowed them to replace faulty nodes which cut down operation and maintenance costs from days to minutes. Stack: Rust.
 * Implemented very important feature for migrating node operators which allowed the users to rotate private keys used for managing nodes which hardened security. Previously it was needed for the node to be removed and reinstalled and now it takes seconds. Stack: Rust.
 * Worked on a NNS recovery which made our network resiliant to failures and solved the issue of breaking the network if its brain stalls. Joint work with other teams and was responsible for designing parts of the system related to process orchestration. Massive improvement. Stack: Rust.
+* Working on a full-stack control engine component that will be used to spin up dedicated sovereign parts of the internet.
+* Worked on a qemu & libvirt testing component that spins up a dedicated instance of the internet computer locally which massively increased testing and development loops.
+* Setup the full developer experience of the control panel.
 
 Sotex: [SWE]
 * Worked on a bunch of microservices that have a job to handle big loads of events, aggregate them and process them in near real time. These included smart metering solutions and a billing detemrinant module. Stack: .NET, Mssql, Docker, Kubernetens, NServiceBus.
