@@ -1,0 +1,11 @@
+services:
+
+  latex:
+    build:
+      dockerfile: custom.Dockerfile
+      context: .
+    volumes:
+      - ./:/data
+    command:
+      - make
+      - view
