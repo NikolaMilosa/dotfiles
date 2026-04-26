@@ -1,169 +1,242 @@
-\documentclass[]{mcdowellcv}
+%-------------------------
+% Resume in Latex
+% Author : Harshibar
+% Based off of: https://github.com/jakeryang/resume
+% License : MIT
+%------------------------
 
-\usepackage{microtype} 
-\pretolerance=10000
-\tolerance=2000
-\emergencystretch=3em
+\documentclass[letterpaper,11pt]{article}
 
-
-% For mathematical symbols
-\usepackage{amsmath}
-\usepackage[margin=1in]{geometry}
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
 \usepackage{enumitem}
 \usepackage[hidelinks]{hyperref}
-\usepackage{titlesec}
-\usepackage{parskip}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+% only for pdflatex
+% \input{glyphtounicode}
+
+% fontawesome
 \usepackage{fontawesome5}
 
+% fixed width
+\usepackage[scale=0.90,lf]{FiraMono}
 
-\name{Dragoljub Đurić \linebreak \footnotesize{\href{mailto:djuric.dra@gmail.com}{djuric.dra@gmail.com}, (41) 79-247-91-41}\linebreak \footnotesize{Zürich, Switzerland}}
-\address{    \href{https://github.com/dragoljub-djuric}{\small \faGithub~\hspace{2.5} Github } \linebreak
-    \href{https://linkedin.com/in/dragoljub-djuric}{\small \faLinkedin~\hspace{3.8} Linkedin } \linebreak
-    \href{ https://leetcode.com/dragoljub-djuric}{\small \faCode~ LeetCode  }}
-\contacts{ Programming languages: \linebreak  Proficient: C++ | Rust \linebreak \mbox{ Familiar: Go | Java | SQL}}
+% light-grey
+\definecolor{light-grey}{gray}{0.83}
+\definecolor{dark-grey}{gray}{0.3}
+\definecolor{text-grey}{gray}{.08}
+
+\DeclareRobustCommand{\ebseries}{\fontseries{eb}\selectfont}
+\DeclareTextFontCommand{\texteb}{\ebseries}
+
+% custom underilne
+\usepackage{contour}
+\usepackage[normalem]{ulem}
+\renewcommand{\ULdepth}{1.8pt}
+\contourlength{0.8pt}
+\newcommand{\myuline}[1]{%
+  \uline{\phantom{#1}}%
+  \llap{\contour{white}{#1}}%
+}
+
+
+% custom font: helvetica-style
+\usepackage{tgheros}
+\renewcommand*\familydefault{\sfdefault} 
+%% Only if the base font of the document is to be sans serif
+\usepackage[T1]{fontenc}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{0in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting - serif
+% \titleformat{\section}{
+%   \vspace{2pt} \scshape \raggedright\large % header section
+% }{}{0em}{}[\color{black} \titlerule \vspace{-5pt}]
+
+% TODO EBSERIES
+% sans serif sections
+\titleformat {\section}{
+    \bfseries \vspace{2pt} \raggedright \large % header section
+}{}{0em}{}[\color{light-grey} {\titlerule[2pt]} \vspace{-4pt}]
+
+% only for pdflatex
+% Ensure that generate pdf is machine readable/ATS parsable
+% \pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-1pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & {\color{dark-grey}\small #2}\vspace{1pt}\\ % top row of resume entry
+      \textit{#3} & {\color{dark-grey} \small #4}\\ % second row of resume entry
+    \end{tabular*}\vspace{-4pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+      #1 & {\color{dark-grey}} \\
+    \end{tabular*}\vspace{-4pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+% CHANGED default leftmargin  0.15 in
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{0pt}}
+
+\color{text-grey}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 \begin{document}
 
-	% Print the header
-	\makeheader
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge Harshibar} \\ \vspace{5pt}
+    \small \faPhone* \texttt{555.555.5555} \hspace{1pt} $|$
+    \hspace{1pt} \faEnvelope \hspace{2pt} \texttt{hello@email.com} \hspace{1pt} $|$ 
+    \hspace{1pt} \faYoutube \hspace{2pt} \texttt{harshibar} \hspace{1pt} $|$
+    \hspace{1pt} \faMapMarker* \hspace{2pt}\texttt{U.S. Citizen}
+    \\ \vspace{-3pt}
+\end{center}
 
-        \centering \textit{Software Engineer specializing in distributed systems, scalability, and performance optimization. Strong foundation in theoretical computer science and algorithm design, with experience in information retrieval, execution runtimes, and storage infrastructure.}
-	% Print the content
+%-----------EXPERIENCE-----------
+\section{EXPERIENCE}
+  \resumeSubHeadingListStart
 
-    \begin{cvsubsection}{Software Engineer}{Google - Core Search Infrastructure}{Zürich \quad 09/2025 – Present}
-    \textbf{Retrieval Engine} - the core of the search engine indexing trillions of documents with tens of millions QPS at ultra-low latency
-        \begin{itemize}
-            \item Slashed p99 latency to under 30s for the retrieval engine's update-validation tool across all search corpuses (including Google Search, YouTube, Gemini, and Cloud). Achieved this by fully distributing request workloads and eliminating OOM errors, rescuing a system that previously had a 90\% failure rate due to 300s timeouts.
-        \end{itemize}
-\end{cvsubsection}
+    \resumeSubheading
+      {YouTube}{Aug. 2019 -- Present}
+      {Creator (\href{https://www.youtube.com/c/harshibar}{\myuline {@harshibar}})}{San Francisco, CA}
+      \resumeItemListStart
+        \resumeItem{Grew channel to \textbf{60k subscribers in 1.5 years}; created 80+ videos on tech and productivity}
+        \resumeItem{Conducted A/B testing on titles and thumbnails; \textbf{increased video impressions by 2.5M} in 3 months}
+         \resumeItem{Designed a Notion workflow to streamline video production and roadmapping; boosted productivity by 20\%}
+        \resumeItem{\textbf{Partnered with brands like Skillshare and Squarespace} to expand their outreach via sponsorships}
+        \resumeItem{\textbf{Highlights}:
+            \href{https://www.youtube.com/watch?v=HhWUjp5pD0g}{\myuline {The Problem with Productivity Apps}}, \href{https://www.youtube.com/watch?v=ms4cWMsOITs}{\myuline {Obsidian App Review}},
+            \href{https://www.youtube.com/watch?v=PkDbkyIR44w}{\myuline {Not-So-Minimal Desk Setup}}}
+      \resumeItemListEnd
 
-	
-    
-    \begin{cvsubsection}{Software Engineer}{Dfinity}{Zürich \quad 10/2022 - 08/2025}
-    
-     \textbf{Internet Computer Execution Layer} \hfill [\href{https://github.com/dfinity/ic}{\faGithub ~\hspace{0.1em} dfinity/ic}] 
-    \begin{itemize}
-        \item \small Optimized \textbf{sandbox caching} by replacing LRU policy with a scheduler-aware eviction algorithm, aligning cache retention with execution priority. This stabilized the cache hit rate to \textbf{~100\%}, resolving a major performance bottleneck and contributing to a \textbf{4-5x} increase in system throughput \hfill \hyperlink{middleware_pub}{[Middleware '25]}
-        \item \small Introduced the \texttt{cycles\_burn128()} API, which has generated \textbf{~95\%} of the Internet Computer’s execution \textbf{revenue} since launch
-        \iffalse\item Refined the \textbf{scheduler} to enforce fair CPU allocation across diverse task types, eliminating starvation and improving system \textbf{throughput} by \textbf{10\%} under variable workloads\fi
-        \item \small Developed the \textbf{low\_wasm\_memory} hook to trigger actions when operative memory available for additional allocation drops below a threshold \hfill [~\href{https://www.youtube.com/watch?v=DptTvPhW9TY}{\faYoutube ~\hspace{0.1em} demo}]
-        \iffalse\item Diagnosed and eliminated a long-standing \textbf{memory leak} in the testing infrastructure, cutting memory usage by \textbf{80\%} and accelerating CI test cycles by \textbf{78\%}, significantly improving development velocity and resource efficiency\fi
-    \end{itemize}
-    \textbf{Decentralized Storage Infrastructure} – Founding engineer
-    \begin{itemize}
-        \item \small Architected a \textbf{distributed blob storage} system specifically optimized for the high-throughput, resilient data workloads of applications powered by LLMs and foundation models.
-    \end{itemize}
-     \textbf{Stable Structures} - Rust library of data structures operating in persistent memory \hfill [\href{https://github.com/dfinity/stable-structures}{\faGithub ~\hspace{0.1em} dfinity/stable-structures}]
-    \begin{itemize}
-        \item \small Enhanced \textbf{BTreeMap} performance by \textbf{eliminating unnecessary value reads}, accelerating \textbf{20\%} of operations and reducing execution time by up to \textbf{95\%}
-        \item \small Implemented and integrated \textbf{BTreeSet} data structure in the Stable Structures library, expanding its capabilities for efficient and reliable set operations in stable memory
-    \end{itemize}
-\iffalse
-\textbf{Bitcoin Canister} – Component enabling smart contracts to directly interact with the Bitcoin network
-    \begin{itemize}
-        \item Upgraded \textbf{fork resolution} from depth-based to difficulty-based \(\delta\)-stability and introduced weighted stability count
-        \item Built an API endpoint to retrieve \textbf{Bitcoin block headers}, supporting efficient and trustless verification
-    \end{itemize}
-    
-    \fi
-\end{cvsubsection}
+    \resumeSubheading
+      {Google Verily}{Aug. 2018 -- Sept. 2019}
+      {Software Engineer}{San Francisco, CA}
+      \resumeItemListStart
+        \resumeItem{\textbf{Led front-end development} of a dashboard to process 50k blood samples and detect early-stage cancer}
+        \resumeItem{Rebuilt a Quality Control product with input from 20 cross-functional stakeholders, \textbf{saving \$1M annually}}
+        \resumeItem{Spearheaded product development of a new lab workflow tool, leading to a 40\% increase in efficiency; \\ shadowed 10 core users, iterated on design docs, and implemented the solution with one engineer}
 
-		\begin{cvsubsection}{Research assistant\iffalse Software Engineer \fi}{Oracle Labs}{Zürich \quad 07/2021 - 10/2021}
-			\textbf{Oracle Cloud Infrastructure - Big Data Studio \iffalse \hfill \textbf{Java, JMeter, SQL, Jenkins, Gradle\iffalse, Kubernetes, TypeScript\fi} \fi }
-			\begin{itemize}
-                    \item \small Developed a \textbf{performance analyzer} and sped up endpoint benchmarking by \textbf{250\%} in Big Data Studio
-			\end{itemize}
-		\end{cvsubsection}
-		
-		\begin{cvsubsection}{Teaching assistant}{EPFL - École Polytechnique Fédérale de Lausanne}{02/2021 - 07/2021}		
-			\begin{itemize}
-				\item \small Led sessions for 200+ students on computability and computational complexity in \mbox{\textbf{Theory of Computation} (CS-251)}
-			\end{itemize}
-		\end{cvsubsection}
-        \iffalse
-		\begin{cvsubsection}{Student software engineer}{Development in higher education, Republic of Serbia}{10/2018 - 02/2019}
-		    \textit{Department of Software Engineering}
-		    \begin{itemize}
-		        \item  \textbf{Developed} an automated grading system for Java programming assignments, reducing the required professor review time from \textbf{15} minutes to \textbf{1} minute per student by automatically evaluating solution approaches and correctness
-		    \end{itemize}
-		\end{cvsubsection}
-        \fi
-	\end{cvsection}
+    \resumeItemListEnd
 
-    
-	\begin{cvsection}{Education}
-	    \begin{cvsubsection}{MSc in Computer Science}{EPFL - École Polytechnique Fédérale de Lausanne}{09/2019 - 02/2022}
-			\begin{itemize}
-				    \item \small GPA: \textbf{5.16/6} | Thesis: \textbf{Double Choco is NP-complete}
-                    \item \small Specialization: \textbf{Computer Science Theory}
-                \iffalse
-                    \item \small Program included a special master track with graduate coursework at ETH Zürich
-                    \item \small Core Courses: Advanced Algorithms, Advanced Probability\iffalse and Applications\fi, Computational Complexity, Distributed Algorithms, Graph Theory, Sublinear Algorithms for Big Data Analysis, \iffalse Artificial Neural Networks,\fi Database Systems, Deep Learning, Machine Learning\iffalse, TCP/IP\fi
-                \fi
-			\end{itemize}
-		\end{cvsubsection}
-	    \iffalse
-	    \begin{cvsubsection}{Zürich, Switzerland}{ETH Zürich \iffalse(Graduate as part of MSc at EPFL)\fi}{09/2020 - 08/2021}
-	        \begin{itemize}
-	            \item \small Undertook graduate coursework at ETH Zürich as part of EPFL's special master track \iffalse(graduated as MSc at EPFL)\fi
-	        \end{itemize}
-	    
-		\end{cvsubsection}
-	    \fi
-		\begin{cvsubsection}{BE in Information Systems \iffalse and Technologies \fi}{University of Belgrade}{10/2015 - 09/2019}
-			\begin{itemize}
-                    \item \small  GPA: \textbf{9.86/10} | Thesis: \textbf{A novel algorithm for sorting in linear time} 
-                    \item \small Graduated as \textbf{Best in Class} out of 800+ students
-			\end{itemize}
-		\end{cvsubsection}
+    \resumeSubheading
+      {Amazon}{May 2017 -- Aug. 2017}
+      {Software Engineering Intern}{Seattle, WA}
+      \resumeItemListStart
+        \resumeItem{Worked on the Search Customer Experience Team; \textbf{received a return offer} for a full-time position}
+        \resumeItem{\textbf{Shipped a new feature to 2M+ users} to improve the search experience for movie series-related queries}
+        \resumeItem{Built a back-end database service in Java and implemented a front-end UI to support future changes}
+      \resumeItemListEnd
 
-	\end{cvsection}
-    \begin{cvsection}{Publications}
-        \begin{cvsubsection}{}{}{}	
-            
-			\begin{itemize}
-            \item 
-            \small \hypertarget{middleware_pub}{[Middleware '25]} \textbf{Blockchain Inception: Scheduling and Caching Optimizations for supporting a PoW Blockchain on the Internet Computer}
-            
-                \small \textit{M Arutyunyan, A Berestovskyy, A Bratschi-Kaye, D Đurić, YA Pignolet, D Sarlis, A Sinpalean, A Uta}
-                
-                \small \textit{ACM/IFIP Middleware Conference (Industry Track), 2025.} \textit{~\href{https://doi.org/10.1145/3721463.3772059}{doi:10.1145/3721463.3772059}}      
-            \small \item \textbf{Double Choco is NP-complete}
-            
-                    \small \textit{D. Đurić}
-                    
-                     \small \textit{arXiv preprint, 2022} \textit{~\href{https://arxiv.org/abs/2203.02815}{arXiv:2203.02815}}
-                     
-                     \small \textit{Presented at the Theory Coffee Seminar, EPFL 2022}
-            \end{itemize}
-        \end{cvsubsection}
-    \end{cvsection}
+  \resumeSubHeadingListEnd
 
 
-	\begin{cvsection}{Awards}
-		\begin{cvsubsection}{}{}{}	
-			\begin{itemize}
-			    \item 
-                    \textbf{Dositeja Fellowship} \hfill \textbf{EPFL and University of Belgrade, 2019--2022}
-                    \begin{itemize}[label=\circ]
-                        \item \small{Serbia's highest national fellowship for academic merit, awarded for four consecutive years}
-                    \end{itemize}
-                \item
-                        \textbf{ACM-ICPC Southwestern Europe Regional Contest (SWERC)} \hfill \textbf{EPFL, 2019/20}
-                        \begin{itemize}[label=\circ]
-                            \item \small{Ranked \textbf{31st} in the Final}
-                        \end{itemize}
-                    \item 
-                        \textbf{INFORMS O.R. \& Analytics Competition} \hfill \textbf{General Motors, 2019}
-                        \begin{itemize}[label=\circ]
-                            \item \small{\textbf{4th Place Finish (Finalist)} out of 290 teams for the ``Redefining Vehicle Delivery with Autonomous Cars'' challenge}
-                            \item \small{Architected a multi-stage system using machine learning for demand forecasting to inform a route optimization algorithm}
-                        \end{itemize}
-				\item
-                    \textbf{Dean's List} \hfill \textbf{University of Belgrade, 2017--2019}
-                    \begin{itemize}[label=\circ]
-                        \item \small{Awarded for academic excellence by placing in the top 1\% of students}
-                    \end{itemize}
-                    \end{itemize}
-		\end{cvsubsection}
-	\end{cvsection}
+%-----------PROJECTS-----------
+
+\section{PROJECTS}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{Hyku Consulting}} {Sept. 2019 -- Mar. 2021}
+          \resumeItemListStart
+            \resumeItem{Mentored 15 students towards acceptance at top US boarding schools; achieved \textbf{100\% success rate}}
+            \resumeItem{Designed a \textbf{collaborative learning ecosystem} for students and parents with Trello, Miro, and Google Suite}
+          \resumeItemListEnd
+          
+        \resumeProjectHeading
+          {\textbf{Minimal Icon Pack}}{Sept. 2020 -- Nov. 2020}
+          \resumeItemListStart
+            \resumeItem{Designed and released 100+ minimal iOS and Android icons from scratch using Procreate and Figma}
+            \resumeItem{Marketed the product and design process on {\href{https://www.youtube.com/watch?v=Ju32r7QJCzk}{\myuline {YouTube}}}; accumulated over \textbf{\$250 in sales} on {\href{https://gumroad.com/l/icons-by-harshibar}{\myuline {Gumroad}}}}
+          \resumeItemListEnd
+          
+      \resumeProjectHeading
+         {\textbf{CommonIntern}}{Sept. 2019 -- May 2020}
+          \resumeItemListStart
+            \resumeItem{Built a Python script to automatically apply to jobs on Glassdoor using BeautifulSoup and Selenium}
+            \resumeItem{\textbf{500 stars on \href{https://github.com/harshibar/common-intern}{\myuline {GitHub}}}; featured on {\href{https://hackaday.com/2020/05/30/job-application-script-automates-the-boring-stuff-with-python}{\myuline {Hackaday}}}; made the front page of {\href {https://www.reddit.com/r/Python/comments/gpaegj/i_was_tired_of_opening_100s_of_tabs_for/?utm_source=share}{\myuline {r/python}}} and {\href {https://www.reddit.com/r/programming/comments/dcmbzx/i_was_tired_of_opening_100s_of_tabs_for/}{\myuline {r/programming}}}}
+          \resumeItemListEnd
+          
+    \resumeSubHeadingListEnd
+
+
+
+%-----------EDUCATION-----------
+\section {EDUCATION}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Wellesley College}{Aug. 2014 -- May 2018}
+      {Bachelor of Arts in Computer Science and Pre-Med}{Wellesley, MA}
+      	\resumeItemListStart
+    	\resumeItem {\textbf{Coursework}: Data Structures, Algorithms, Databases, Computer Systems, Machine Learning}
+        \resumeItem 
+            {\textbf{Research}: MIT Graybiel Lab (published author), MIT Media Lab (analyzed urban microbe spread)}
+        \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+
+%
+%-----------PROGRAMMING SKILLS-----------
+\section{SKILLS}
+ \begin{itemize}[leftmargin=0in, label={}]
+    \small{\item{
+     \textbf{Languages} {: Python, JavaScript (React.js), HTML/CSS, SQL (PostgreSQL, MySQL)}\vspace{2pt} \\
+     \textbf{Tools}     {: Figma, Notion, Jira, Trello, Miro, Google Analytics, GitHub, DaVinci Resolve, OBS}
+    }}
+ \end{itemize}
+
+
+%-------------------------------------------
 \end{document}
