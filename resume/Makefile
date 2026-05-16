@@ -16,7 +16,7 @@ html:
 	htlatex ${filename}
 
 view:
-	while inotifywait --event modify,move_self,close_write ${filename}.tex; \
+	while inotifywait --event modify,move_self,close_write ${filename}.tex mcdowellcv.cls; \
 	do \
 		$(MAKE) pdf; \
 	done

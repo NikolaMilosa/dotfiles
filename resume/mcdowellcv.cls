@@ -40,8 +40,10 @@
 
 % Set font face
 \usepackage{fontspec}
-\setmainfont[SmallCapsFeatures={Renderer=Basic},
-Ligatures={TeX, NoCommon, NoDiscretionary}]{\mainfontface}
+\setmainfont[
+  SmallCapsFeatures={Renderer=Basic},
+  Ligatures={TeX, NoCommon, NoDiscretionary}
+]{\mainfontface}
 
 % Remove paragraph indentation
 \usepackage[parfill]{parskip} 
@@ -86,7 +88,7 @@ Ligatures={TeX, NoCommon, NoDiscretionary}]{\mainfontface}
 \ifthenelse{\equal{\platformname}{\notwindowsname}}{
 	\def\namespaceskip{0.575em}
 	\def\afterheaderspace{1.1pt}
-	\def\beforesectionheaderspace{5pt}
+	\def\beforesectionheaderspace{2pt}
 	\def\sectionheadermargin{6pt}
 	\def\beforesectionheaderhrulespace{2.85pt}
 	\def\sectionheaderhrlueheight{0.518pt}
