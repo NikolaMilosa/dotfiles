@@ -1,10 +1,3 @@
-%-------------------------
-% Resume in Latex
-% Author : Harshibar
-% Based off of: https://github.com/jakeryang/resume
-% License : MIT
-%------------------------
-
 \documentclass[letterpaper,11pt]{article}
 
 \usepackage{latexsym}
@@ -50,7 +43,7 @@
 \usepackage{tgheros}
 \renewcommand*\familydefault{\sfdefault} 
 %% Only if the base font of the document is to be sans serif
-\usepackage[T1]{fontenc}
+\usepackage{fontenc}
 
 
 \pagestyle{fancy}
@@ -129,6 +122,12 @@
 
 \color{text-grey}
 
+\usepackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX}
+
+\setmainfont{Noto Serif}
+\setmonofont{Noto Sans Mono}
+
 %-------------------------------------------
 %%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -137,7 +136,7 @@
 
 %----------HEADING----------
 \begin{center}
-    \textbf{\Huge Harshibar} \\ \vspace{5pt}
+    \textbf{\Huge Nikola Milosavljević} \\ \vspace{5pt}
     \small \faPhone* \texttt{555.555.5555} \hspace{1pt} $|$
     \hspace{1pt} \faEnvelope \hspace{2pt} \texttt{hello@email.com} \hspace{1pt} $|$ 
     \hspace{1pt} \faYoutube \hspace{2pt} \texttt{harshibar} \hspace{1pt} $|$
