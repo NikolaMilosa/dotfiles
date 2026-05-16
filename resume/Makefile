@@ -5,8 +5,8 @@
 filename=main
 
 pdf: 
-	xelatex ${filename}
-	xelatex ${filename}
+	lualatex ${filename}
+	lualatex ${filename}
 
 text: html
 	html2text -width 100 -style pretty ${filename}/${filename}.html | sed -n '/./,$$p' | head -n-2 >${filename}.txt

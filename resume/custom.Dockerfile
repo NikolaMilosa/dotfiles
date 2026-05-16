@@ -1,9 +1,12 @@
 FROM debian:bookworm
 
 RUN apt-get update && apt-get install -y \
-    texlive-xetex \
-    texlive-latex-extra \
-    texlive-fonts-extra \
+      texlive-luatex \
+      texlive-latex-recommended \
+      texlive-latex-extra \
+      texlive-fonts-recommended \
+      texlive-fonts-extra \
+      fontconfig \
     fonts-crosextra-carlito \
     make \
     inotify-tools
