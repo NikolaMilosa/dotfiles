@@ -6,4 +6,9 @@
 .config/hyde/themes/Code\ Garden/wall.swww.png
 .config/waybar/layouts/backup*
 
+**/main.aux
+**/main.log
+**/main.out
+**/missfont.log
+
 **/__pycache__/*

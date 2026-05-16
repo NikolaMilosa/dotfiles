@@ -1,0 +1,142 @@
+\documentclass[]{mcdowellcv}
+
+\usepackage{microtype} 
+\pretolerance=10000
+\tolerance=2000
+\emergencystretch=3em
+
+
+% For mathematical symbols
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{fontawesome5}
+
+\name{Nikola Milosavljević \linebreak 
+       \footnotesize{\href{https://github.com/nikolamilosa}{\small \faGithub~\hspace{2.5pt} Github } 
+    \href{https://linkedin.com/in/nikolamilosa}{\small \faLinkedin~\hspace{3.8pt} Linkedin }} \linebreak 
+       \footnotesize{Languages: Rust | Python | Go}}
+
+\address{
+    Zürich \linebreak Switzerland
+}
+\contacts{
+    \href{mailto:nikolamilosa20@gmail.com}{nikolamilosa20@gmail.com},\linebreak (41) 78-348-32-24
+}
+\begin{document}
+
+    % Print the header
+    \makeheader
+
+        \centering \textit{Software Engineer specializing in distributed systems, scalability, and observability. Strong foundation in computer science and system design, with experience in cloud computing, designing autonomous AI agents and observability.}
+    % Print the content
+
+    \begin{cvsection}{Experience}
+
+    \begin{cvsubsection}{Site Reliability Engineer}{DFINITY Stiftung}{Zürich \quad 11/2024 - Present \linebreak Novi Sad \quad 09/2022 - 11/2024}
+    \vspace{0.8em}
+    \textbf{Observability \& automation} - platform powering engineers with insights into thousands of machines at low cost and latency.
+        \begin{itemize}
+            \item Designed and implemented a scalable service discovery module powering the company's \textbf{observability platform}, synchronizing global system state, integrating with \textbf{Prometheus} and \textbf{VictoriaMetrics} and generating dynamic observability configurations.
+            \item Architected the company's end-to-end logging infrastructure; led migration from AWS to on-prem Kubernetes, reducing costs by \textbf{~95\%} and supporting \textbf{~30M logs/hour}.
+            \item Constructed an automated release qualification pipeline, executing pre/post-upgrade performance tests to quantify regressions and guide release decisions.
+        \end{itemize}
+
+    \textbf{Opencloud} - frontier sovereign serverless cloud platform for AI agents. \hfill [\href{https://opencloud.org/}opencloud.org]
+        \begin{itemize}
+            \item Engineered core components of the \textbf{control plane}, allowing on-demand cloud provisioning and insights.
+            \item Piloted \textbf{AI nodes}, allowing customers to keep ownership of their data while providing powerful features for their \textbf{cloud engines}.
+            \item Prototyped an \textbf{SRE agent}, giving engine owners helpful insights and automatic detections of anomalies happening on their platform.
+        \end{itemize}
+
+    \textbf{Distributed Governance} \hfill [\href{https://github.com/dfinity/ic}{\faGithub ~\hspace{0.1em} dfinity/ic}], [\href{https://github.com/dfinity/dre}{\faGithub ~\hspace{0.1em} dfinity/dre}]
+        \begin{itemize}
+            \item Automated node migrations that are reducing swapping time from \textbf{days} to \textbf{seconds} while improving security and flexibility.
+            \item Introduced a linear optimization tool for \textbf{distributed network design}, enabling constraint-based topology generation and capacity planning for target network states.
+        \end{itemize}
+    \end{cvsubsection}
+
+    \begin{cvsubsection}{Teaching assistant}{University of Novi Sad}{Novi Sad \quad 09/2023 - 09/2024}
+        \textbf{Microservice architecture}
+        \begin{itemize}
+            \item Lead labs and assisted lectures for 300+ students across multiple university groups.
+            \item Taught students concepts of gRPC, message queuing and saga patterns.
+        \end{itemize}
+        \textbf{Introduction to cybersecurity} 
+        \begin{itemize}
+            \item Delivered introductory cybersecurity lectures to 150+ students, teaching core concepts.
+            \item Held a hackaton, allowing students to learn and use penetration testing, basics of cryptography and public key infrastructure.
+        \end{itemize}
+    \end{cvsubsection}
+ 
+    
+    \begin{cvsubsection}{Fullstack Software Engineer (Outsorced)}{Schneider Electric}{Novi Sad \quad 05/2021 - 09/2022}
+        \begin{itemize}
+            \item Built a billing determinant module integrating IoT devices and handling \textbf{terabytes of data} with reliable large-scale processing.
+            \item Developed smart meter orchestration system enabling users to remotely configure, monitor and diagnose devices usiong well known protocols, improving observability and operation control at scale.
+            \item Led a company wide infrastructure provisioning refactor, introducing automation with terraform and ansible. 
+        \end{itemize}
+    
+    \end{cvsubsection}
+
+\end{cvsection}
+ 
+    \begin{cvsection}{Education}
+        \begin{cvsubsection}{MSc in Computer Science}{Unvieristy of Novi Sad}{09/2022 - 12/2023}
+            \begin{itemize}
+                \item Faculty of Technical Sciences
+                \item GPA: \textbf{9.75/10} | \textbf{Cybersecurity and payment systems section}
+                \item Graduated in the top of the class (in top \textbf{1\%}).
+                \item Thesis: \textit{Recovering deleted files for forensics investigation}.
+            \end{itemize}
+        \end{cvsubsection}
+        \begin{cvsubsection}{BSc in Computer Science}{Unvieristy of Novi Sad}{09/2018 - 07/2022}
+            \begin{itemize}
+                \item Faculty of Technical Sciences
+                \item GPA: \textbf{9.49/10} | \textbf{Computer software and automation section}
+                \item Graduated in the top of the class (in top \textbf{1\%}).
+                \item Thesis: \textit{breaking OWASP Juice Shop}.
+            \end{itemize}
+        \end{cvsubsection}
+    \end{cvsection}
+
+    \begin{cvsection}{Honors}
+        \begin{cvsubsection}{}{}{}    
+            \textbf{National Fellowship} \hfill \textbf{University of Novi Sad, 2018--2022}
+            \begin{itemize}[label=\circ]
+                \item \small{Serbia's national fellowship for academic merit for top 1\% of students, awarded for four consecutive years.}
+            \end{itemize}
+        \end{cvsubsection}
+        \begin{cvsubsection}{}{}{}    
+            \textbf{National CyberHero hackaton} \hfill \textbf{University of Belgrade, 2021}
+            \begin{itemize}[label=\circ]
+                \item \small{Placed \textbf{5th}, solving security challenges across multiple domains.}
+            \end{itemize}
+        \end{cvsubsection}
+    \end{cvsection}
+
+    \begin{cvsection}{Stack}
+        \begin{cvsubsection}{}{}{}
+            \begin{minipage}[t]{0.48\textwidth}
+                \small
+                \textbf{Databases}: \textit{SQL} (Postgres, MsSql), \textit{NoSQL} (Neo4j, Mongo, Redis)
+
+                \vspace{0.15em}
+
+                \textbf{Cloud}: AWS, GCP, Azure
+            \end{minipage}
+            \hfill
+            \begin{minipage}[t]{0.48\textwidth}
+                \small
+                \textbf{Automation}: GitHub Actions, Ansible, Bazel, Airflow
+
+                \vspace{0.15em}
+
+                \textbf{Containerization \& Orchestration}: Docker, Kubernetes
+            \end{minipage}
+        \end{cvsubsection}
+    \end{cvsection}
+\end{document}
+
