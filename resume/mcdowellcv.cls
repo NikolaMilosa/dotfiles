@@ -90,7 +90,7 @@ Ligatures={TeX, NoCommon, NoDiscretionary}]{\mainfontface}
 	\def\sectionheadermargin{6pt}
 	\def\beforesectionheaderhrulespace{2.85pt}
 	\def\sectionheaderhrlueheight{0.518pt}
-	\def\aftersectionheaderspace{-5.8pt}
+	\def\aftersectionheaderspace{-3.8pt}
 	\def\aftersinglelinesubsectionheaderspace{-20.25pt}
 	\def\afterdoublelinesubsectionheaderspace{-11.75pt}
 	\def\aftermultilinesubsectionheaderspace{-7.75pt}
@@ -197,7 +197,7 @@ Ligatures={TeX, NoCommon, NoDiscretionary}]{\mainfontface}
 	\notblank{#3}{\toggletrue{centertitledefined}}{}
 	\notblank{#4}{\toggletrue{righttitledefined}}{}
 	\ifboolexpr{togl {lefttitledefined} or togl {centertitledefined} or togl {righttitledefined}}{
-		\begin{tabu} to 1\textwidth { X[l,1.35p] X[c,2.7p] X[r,1.35p] }
+		\begin{tabu} to 1\textwidth { X[l,2.7p] X[c,2.7p] X[r,2.7p] }
 			\textbf{#2} & \textbf{#3} & \textbf{#4} \\
 		\end{tabu}
 		% Add space according to the specidied number of lines
